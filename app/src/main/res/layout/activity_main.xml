@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/pitch"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".MainActivity">
+
+    <TextView
+        android:id="@+id/page1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Voice Control"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="20dp" />
+
+    <TextView
+        android:layout_marginTop="20dp"
+        android:id="@+id/Pitch"
+        android:layout_width="match_parent"
+        android:layout_height="35dp"
+        android:layout_marginLeft="20dp"
+        android:text="Pitch" />
+
+    <SeekBar
+        android:id="@+id/pbar"
+        android:layout_width="250dp"
+        android:layout_height="20dp"
+        android:layout_marginLeft="60dp"
+        android:progress="50" />
+
+    <TextView
+        android:id="@+id/Speed"
+        android:layout_width="match_parent"
+        android:layout_height="35dp"
+        android:layout_marginLeft="20dp"
+        android:text="Speed" />
+
+    <SeekBar
+        android:id="@+id/sbar"
+        android:layout_width="250dp"
+        android:layout_height="20dp"
+        android:layout_marginLeft="60dp"
+        android:progress="50"
+        android:layout_marginBottom="10dp" />
+
+    <ImageView
+        android:layout_width="200dp"
+        android:layout_height="100dp"
+        android:layout_gravity="center_horizontal"
+        android:src="@drawable/soundwave" />
+
+    <EditText
+        android:id="@+id/type"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="55dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:hint="Type Here" />
+
+    <Button
+        android:id="@+id/enter"
+        android:layout_width="80dp"
+        android:layout_height="50dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="10dp"
+        android:enabled="false"
+        android:text="Enter" />
+
+    <Button
+        android:id="@+id/next"
+        android:layout_width="150dp"
+        android:layout_height="50dp"
+        android:layout_alignParentTop="true"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="10dp"
+        android:text="Next Page" />
+
+    <com.scwang.wave.MultiWaveHeader
+        android:id="@+id/wfoot"
+        android:layout_width="500dp"
+        android:layout_height="100dp"
+        android:layout_marginTop="35dp"
+        android:scaleY="-1" />
+
+
+</LinearLayout>
