@@ -50,7 +50,8 @@ public class MainActivity extends AppCompatActivity {
         waveFoot.setWaveHeight(50);
         waveFoot.setStartColor(Color.CYAN);
         waveFoot.setCloseColor(Color.RED);
-        waveFoot.setVelocity(1);
+        waveFoot.setGradientAngle(45);
+        waveFoot.setVelocity(10);
 
         enter.setOnClickListener(v -> {
             speak();
