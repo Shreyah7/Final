@@ -8,6 +8,12 @@
     android:orientation="vertical"
     tools:context=".Main2Activity" >
 
+    <Button
+        android:id="@+id/clearButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1" />
+
     <TextView
         android:id="@+id/page2"
         android:layout_width="wrap_content"
@@ -18,22 +24,6 @@
         android:id="@+id/Log"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_weight="1" >
-
-        <TextView
-            android:id="@+id/entryNum"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-
-        <TextView
-            android:id="@+id/speed"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-
-        <TextView
-            android:id="@+id/pitch"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-    </ListView>
+        android:layout_weight="1" />
 
 </LinearLayout>

@@ -30,13 +30,13 @@ public class MainActivity extends AppCompatActivity {
     MultiWaveHeader waveFoot;
 
     int buttonClickCount = 0;
-    List<String> entryNum = new ArrayList<>();
-    List<String> speed = new ArrayList<>();
-    List<String> pitch = new ArrayList<>();
+    List<String> logRecords = new ArrayList<>();
+    ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>(this,
+            android.R.layout.simple_list_item_1, logRecords);
 
-    ArrayAdapter<String> arrayAdapter1 = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, entryNum);
-    ArrayAdapter<String> arrayAdapter2 = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, speed);
-    ArrayAdapter<String> arrayAdapter3 = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, pitch); 
+    ListView log;
+
+    Button clear;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,6 +44,8 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         enter = findViewById(R.id.enter);
+        log =  findViewById(R.id.Log);
+        log.setAdapter(arrayAdapter);
 
         convert = new TextToSpeech(this, new TextToSpeech.OnInitListener() {
             @Override
@@ -72,8 +74,13 @@ public class MainActivity extends AppCompatActivity {
         });
 
         next = findViewById(R.id.next);
-        next.setOnClickListener(v ->  {
+        next.setOnClickListener(v -> {
             nextPage();
+        });
+
+        clear = findViewById(R.id.clearButton);
+        clear.setOnClickListener(v -> {
+            clearLog();
         });
     }
 
@@ -105,20 +112,19 @@ public class MainActivity extends AppCompatActivity {
             speedF = (float) 0.1;
         }
 
-        ListView log = findViewById(R.id.Log);
-
         buttonClickCount++;
         String count = Integer.toString(buttonClickCount);
-        entryNum.add(count);
-
         String pitchLevel = Float.toString(pitchF);
-        pitch.add(pitchLevel);
-
         String speedLevel = Float.toString(speedF);
-        speed.add(speedLevel);
+        String data = "Entry " + count + " " + pitchLevel + " pitch. " + speedLevel + " speed.";
 
+        logRecords.add(data);
+        arrayAdapter.notifyDataSetChanged();
+    }
 
-
+    public void clearLog() {
+        logRecords.clear();
+        arrayAdapter.notifyDataSetChanged();
     }
 
     @Override
