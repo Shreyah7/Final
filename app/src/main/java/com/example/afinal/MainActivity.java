@@ -7,14 +7,18 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.speech.tts.TextToSpeech;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ListView;
 import android.widget.SeekBar;
 import android.widget.Toast;
 
 import com.scwang.wave.MultiWaveHeader;
 
 import java.util.Locale;
+import java.util.List;
+import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
     TextToSpeech convert;
@@ -24,6 +28,15 @@ public class MainActivity extends AppCompatActivity {
     Button enter;
     Button next;
     MultiWaveHeader waveFoot;
+
+    int buttonClickCount = 0;
+    List<String> entryNum = new ArrayList<>();
+    List<String> speed = new ArrayList<>();
+    List<String> pitch = new ArrayList<>();
+
+    ArrayAdapter<String> arrayAdapter1 = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, entryNum);
+    ArrayAdapter<String> arrayAdapter2 = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, speed);
+    ArrayAdapter<String> arrayAdapter3 = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, pitch); 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,6 +68,7 @@ public class MainActivity extends AppCompatActivity {
 
         enter.setOnClickListener(v -> {
             speak();
+            addToLog();
         });
 
         next = findViewById(R.id.next);
@@ -79,6 +93,32 @@ public class MainActivity extends AppCompatActivity {
 
         Toast.makeText(getApplicationContext(), toSpeak, Toast.LENGTH_LONG).show();
         convert.speak(toSpeak, TextToSpeech.QUEUE_FLUSH, null);
+    }
+
+    public void addToLog() {
+        float pitchF = (float) pitchBar.getProgress() / 50;
+        if (pitchF < 0.1) {
+            pitchF = (float) 0.1;
+        }
+        float speedF = (float) speedBar.getProgress() / 50;
+        if (speedF < 0.1) {
+            speedF = (float) 0.1;
+        }
+
+        ListView log = findViewById(R.id.Log);
+
+        buttonClickCount++;
+        String count = Integer.toString(buttonClickCount);
+        entryNum.add(count);
+
+        String pitchLevel = Float.toString(pitchF);
+        pitch.add(pitchLevel);
+
+        String speedLevel = Float.toString(speedF);
+        speed.add(speedLevel);
+
+
+
     }
 
     @Override
