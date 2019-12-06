@@ -29,6 +29,7 @@ public class MainActivity extends AppCompatActivity {
     Button enter;
     Button next;
     MultiWaveHeader waveFoot;
+    String toSpeak;
 
     int buttonClickCount = 0;
     ArrayList<String> logRecords = new ArrayList<>();
@@ -66,7 +67,7 @@ public class MainActivity extends AppCompatActivity {
 
         enter.setOnClickListener(v -> {
             speak();
-            addToLog();
+            addToLog(toSpeak);
         });
 
         next = findViewById(R.id.next);
@@ -80,7 +81,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void speak() {
-        String toSpeak = input.getText().toString();
+        toSpeak = input.getText().toString();
         float pitchF = (float) pitchBar.getProgress() / 50;
         if (pitchF < 0.1) {
             pitchF = (float) 0.1;
@@ -97,7 +98,7 @@ public class MainActivity extends AppCompatActivity {
         convert.speak(toSpeak, TextToSpeech.QUEUE_FLUSH, null);
     }
 
-    public void addToLog() {
+    public void addToLog(String word) {
         float pitchF = (float) pitchBar.getProgress() / 50;
         if (pitchF < 0.1) {
             pitchF = (float) 0.1;
@@ -111,7 +112,8 @@ public class MainActivity extends AppCompatActivity {
         String count = Integer.toString(buttonClickCount);
         String pitchLevel = Float.toString(pitchF);
         String speedLevel = Float.toString(speedF);
-        String data = "Entry " + count + " " + pitchLevel + " pitch. " + speedLevel + " speed.";
+        String data = "Entry: " + count + " | Pitch: "
+                + pitchLevel + " | Speed: " + speedLevel + " | Text: " + word;
         logRecords.add(data);
     }
 
