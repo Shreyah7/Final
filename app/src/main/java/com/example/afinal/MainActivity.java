@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.SeekBar;
 import android.widget.Toast;
@@ -73,6 +74,9 @@ public class MainActivity extends AppCompatActivity {
             nextPage();
         });
 
+        //LinearLayout logLay = findViewById(R.id.logLayout);
+        //View logChunk = getLayoutInflater().inflate(R.layout.chunk_log, logLay,false);
+        //logLay.addView(logChunk);
     }
 
     public void speak() {
@@ -122,13 +126,15 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void nextPage() {
-        Intent l = getIntent();
-        l.putStringArrayListExtra("test", logRecords);
+        //Intent l = getIntent();
+        //l.putStringArrayListExtra("test", logRecords);
+        Bundle logs = new Bundle();
+        logs.putStringArrayList("test",logRecords);
 
         Intent next = new Intent(this, Main2Activity.class);
-        //if (logRecords != null) {
-          //  next.putStringArrayListExtra("logData", logRecords);
-        //}
+        if (logRecords != null) {
+          next.putExtra("test", logs);
+        }
         startActivity(next);
     }
 }
