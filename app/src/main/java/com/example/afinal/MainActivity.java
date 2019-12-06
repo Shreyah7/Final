@@ -30,22 +30,17 @@ public class MainActivity extends AppCompatActivity {
     MultiWaveHeader waveFoot;
 
     int buttonClickCount = 0;
-    List<String> logRecords = new ArrayList<>();
-    ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>(this,
-            android.R.layout.simple_list_item_1, logRecords);
-
-    ListView log;
-
-    Button clear;
+    ArrayList<String> logRecords = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        logRecords.add("test");
+
         enter = findViewById(R.id.enter);
-        log =  findViewById(R.id.Log);
-        log.setAdapter(arrayAdapter);
+
 
         convert = new TextToSpeech(this, new TextToSpeech.OnInitListener() {
             @Override
@@ -78,10 +73,6 @@ public class MainActivity extends AppCompatActivity {
             nextPage();
         });
 
-        clear = findViewById(R.id.clearButton);
-        clear.setOnClickListener(v -> {
-            clearLog();
-        });
     }
 
     public void speak() {
@@ -117,14 +108,7 @@ public class MainActivity extends AppCompatActivity {
         String pitchLevel = Float.toString(pitchF);
         String speedLevel = Float.toString(speedF);
         String data = "Entry " + count + " " + pitchLevel + " pitch. " + speedLevel + " speed.";
-
         logRecords.add(data);
-        arrayAdapter.notifyDataSetChanged();
-    }
-
-    public void clearLog() {
-        logRecords.clear();
-        arrayAdapter.notifyDataSetChanged();
     }
 
     @Override
@@ -138,7 +122,13 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void nextPage() {
+        Intent l = getIntent();
+        l.putStringArrayListExtra("test", logRecords);
+
         Intent next = new Intent(this, Main2Activity.class);
+        //if (logRecords != null) {
+          //  next.putStringArrayListExtra("logData", logRecords);
+        //}
         startActivity(next);
     }
 }

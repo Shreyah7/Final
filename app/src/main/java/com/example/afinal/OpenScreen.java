@@ -16,10 +16,14 @@ public class OpenScreen extends AppCompatActivity {
         setContentView(R.layout.activity_open_screen);
         start = findViewById(R.id.start);
         start.setOnClickListener(v -> {
-            Intent next = new Intent(this, MainActivity.class);
-            startActivity(next);
+            next();
 
         });
+    }
+
+    public void next() {
+        Intent next = new Intent(this, MainActivity.class);
+        startActivity(next);
     }
 
 }
