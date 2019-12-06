@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".MainActivity">
+    tools:context=".OpenScreen">
 
     <TextView
         android:id="@+id/page2"
@@ -20,7 +20,8 @@
         android:layout_marginRight="134dp"
         android:layout_weight="1"
         android:text="Welcome!"
-        android:textSize="32dp" />
+        android:textSize="32dp"
+        android:textColor="#F00" />
 
     <Button
         android:id="@+id/start"
