@@ -26,32 +26,35 @@ public class Main2Activity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main2);
 
-        LinearLayout logLay = findViewById(R.id.logLayout);
+        //LinearLayout logLay = findViewById(R.id.logLayout);
 
         logR = getIntent().getBundleExtra("test");
         logArray = logR.getStringArrayList("test");
 
-
         arrayAdapter = new ArrayAdapter<>(this,
                 android.R.layout.simple_list_item_1, logArray);
-        log = (ListView) findViewById(R.id.Log);
+        log = findViewById(R.id.Log);
+
         if(log != null) {
             log.setAdapter(arrayAdapter);
         }
 
         clear = findViewById(R.id.clearButton);
 
-        if (log != null) {
+        //if (log != null) {
             clear.setOnClickListener(v -> {
                 clearLog();
             });
-        }
+        //}
 
         arrayAdapter.notifyDataSetChanged();
     }
 
     public void clearLog() {
-        logR.clear();
+        logArray.clear();
         arrayAdapter.notifyDataSetChanged();
+        Intent next = new Intent(this, MainActivity.class);
+        startActivity(next);
     }
+
 }
