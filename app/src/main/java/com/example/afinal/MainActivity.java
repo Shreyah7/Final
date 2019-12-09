@@ -128,8 +128,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void nextPage() {
-        //Intent l = getIntent();
-        //l.putStringArrayListExtra("test", logRecords);
         Bundle logs = new Bundle();
         logs.putStringArrayList("test",logRecords);
 
